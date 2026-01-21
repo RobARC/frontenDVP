@@ -194,8 +194,8 @@ Para ver logs en consola del navegador (F12):
 
 ## 👤 Autor
 
-**RobARC**  
 Made with ❤️
+**RobARC**  
 
 ## 📄 Licencia
 
