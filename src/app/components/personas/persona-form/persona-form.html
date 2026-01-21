@@ -1,0 +1,95 @@
+<div class="form-container">
+  <div class="form-card">
+    <h2>{{ isEditMode ? 'Editar Persona' : 'Nueva Persona' }}</h2>
+    
+    <form (ngSubmit)="onSubmit()" #personaForm="ngForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombres">Nombres *</label>
+          <input 
+            type="text" 
+            id="nombres"
+            name="nombres"
+            [(ngModel)]="persona.nombres"
+            required
+            placeholder="Nombres"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos *</label>
+          <input 
+            type="text" 
+            id="apellidos"
+            name="apellidos"
+            [(ngModel)]="persona.apellidos"
+            required
+            placeholder="Apellidos"
+          >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tipoIdentificacion">Tipo Identificación *</label>
+          <select 
+            id="tipoIdentificacion"
+            name="tipoIdentificacion"
+            [(ngModel)]="persona.tipoIdentificacion"
+            required
+          >
+            <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo">
+              {{ tipo }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="numeroIdentificacion">Número Identificación *</label>
+          <input 
+            type="text" 
+            id="numeroIdentificacion"
+            name="numeroIdentificacion"
+            [(ngModel)]="persona.numeroIdentificacion"
+            required
+            placeholder="Número de identificación"
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          [(ngModel)]="persona.email"
+          required
+          placeholder="correo@ejemplo.com"
+        >
+      </div>
+
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn-secondary"
+          (click)="cancel()"
+          [disabled]="loading"
+        >
+          Cancelar
+        </button>
+        <button 
+          type="submit" 
+          class="btn-primary"
+          [disabled]="!personaForm.valid || loading"
+        >
+          {{ loading ? 'Guardando...' : (isEditMode ? 'Actualizar' : 'Crear') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

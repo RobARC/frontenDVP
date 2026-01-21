@@ -1,0 +1,61 @@
+<div class="personas-container">
+  <header class="header">
+    <div class="header-content">
+      <h1>Gestión de Personas</h1>
+      <div class="user-info">
+        <span>Bienvenido, {{ currentUser?.usuario }}</span>
+        <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="toolbar">
+      <button class="btn-primary" (click)="createPersona()">
+        Nueva Persona
+      </button>
+    </div>
+
+    <div class="loading" *ngIf="loading">
+      <p>Cargando personas...</p>
+    </div>
+
+    <div class="error-message" *ngIf="error">
+      {{ error }}
+    </div>
+
+    <div class="personas-grid" *ngIf="!loading && personas.length > 0">
+      <div class="persona-card" *ngFor="let persona of personas">
+        <div class="persona-header">
+          <h3>{{ persona.nombreCompleto }}</h3>
+        </div>
+        <div class="persona-body">
+          <p><strong>Identificación:</strong> {{ persona.identificacionCompleta }}</p>
+          <p><strong>Email:</strong> {{ persona.email }}</p>
+          <p><strong>Fecha Creación:</strong> {{ persona.fechaCreacion | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+        <div class="persona-actions">
+          <button 
+            class="btn-edit" 
+            (click)="editPersona(persona.id!)"
+          >
+            Editar
+          </button>
+          <button 
+            class="btn-delete" 
+            (click)="deletePersona(persona.id!, persona.nombreCompleto!)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="!loading && personas.length === 0 && !error">
+      <p>No hay personas registradas</p>
+      <button class="btn-primary" (click)="createPersona()">
+        Crear Primera Persona
+      </button>
+    </div>
+  </div>
+</div>

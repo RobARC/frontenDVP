@@ -1,0 +1,39 @@
+footer {
+  background: transparent;
+  border-top: 1px solid rgba(125, 207, 255, 0.2);
+  padding: 1rem 0;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+footer p {
+  margin: 0;
+  color: #9aa5ce;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.love {
+  color: #f7768e;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(247, 118, 142, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.author {
+  color: #7dcfff;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(125, 207, 255, 0.4);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(247, 118, 142, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(247, 118, 142, 0.8);
+  }
+}

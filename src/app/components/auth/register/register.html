@@ -1,0 +1,131 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Registro Completo</h2>
+    <p class="subtitle">Complete sus datos personales y de usuario</p>
+    
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <!-- Sección: Datos Personales -->
+      <div class="section-title">Datos Personales</div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombres">Nombres *</label>
+          <input 
+            type="text" 
+            id="nombres"
+            name="nombres"
+            [(ngModel)]="personaData.nombres"
+            required
+            placeholder="Nombres"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="apellidos">Apellidos *</label>
+          <input 
+            type="text" 
+            id="apellidos"
+            name="apellidos"
+            [(ngModel)]="personaData.apellidos"
+            required
+            placeholder="Apellidos"
+          >
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tipoIdentificacion">Tipo ID *</label>
+          <select 
+            id="tipoIdentificacion"
+            name="tipoIdentificacion"
+            [(ngModel)]="personaData.tipoIdentificacion"
+            required
+          >
+            <option *ngFor="let tipo of tiposIdentificacion" [value]="tipo">
+              {{ tipo }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="numeroIdentificacion">Número ID *</label>
+          <input 
+            type="text" 
+            id="numeroIdentificacion"
+            name="numeroIdentificacion"
+            [(ngModel)]="personaData.numeroIdentificacion"
+            required
+            placeholder="Número de identificación"
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input 
+          type="email" 
+          id="email"
+          name="email"
+          [(ngModel)]="personaData.email"
+          required
+          placeholder="correo@ejemplo.com"
+        >
+      </div>
+
+      <!-- Sección: Datos de Usuario -->
+      <div class="section-title">Datos de Usuario</div>
+
+      <div class="form-group">
+        <label for="nombreUsuario">Nombre de Usuario *</label>
+        <input 
+          type="text" 
+          id="nombreUsuario"
+          name="nombreUsuario"
+          [(ngModel)]="usuarioData.nombreUsuario"
+          required
+          placeholder="Ingrese nombre de usuario"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="contrasena">Contraseña *</label>
+        <input 
+          type="password" 
+          id="contrasena"
+          name="contrasena"
+          [(ngModel)]="usuarioData.contrasena"
+          required
+          placeholder="Ingrese su contraseña"
+        >
+      </div>
+
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn-secondary"
+          (click)="goToHome()"
+        >
+          Cancelar
+        </button>
+        <button 
+          type="submit" 
+          class="btn-primary"
+          [disabled]="!registerForm.valid || loading"
+        >
+          {{ loading ? 'Registrando...' : 'Registrarse' }}
+        </button>
+      </div>
+
+      <div class="link-section">
+        <p>¿Ya tienes cuenta? 
+          <a (click)="goToLogin()">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

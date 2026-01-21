@@ -1,59 +1,202 @@
-# PersonasDVP
+# PersonasDVP - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+Aplicación web de gestión de personas desarrollada con Angular 20 y diseño Tokyo Dark theme.
 
-## Development server
+## 🚀 Tecnologías
 
-To start a local development server, run:
+- **Angular 20** - Framework standalone components
+- **TypeScript** - Lenguaje de programación
+- **RxJS** - Programación reactiva
+- **HttpClient** - Consumo de API REST
+- **CSS Custom** - Tokyo Dark cyberpunk theme
 
+## 🎨 Características de Diseño
+
+### Tokyo Dark Theme
+- Paleta de colores oscura (#0f1419, #1a1b26, #24283b)
+- Acentos neón: Cyan (#7dcfff), Púrpura (#bb9af7), Rosa (#f7768e)
+- Efectos de glow y text-shadow
+- Gradientes cyan → púrpura en botones principales
+- Responsive design (móvil, tablet, desktop)
+
+## 📋 Funcionalidades
+
+### Autenticación
+- ✅ Registro de usuarios (crea Persona + Usuario en un solo formulario)
+- ✅ Login con validación
+- ✅ Persistencia de sesión en localStorage
+- ✅ Logout
+
+### Gestión de Personas (CRUD)
+- ✅ Listar todas las personas
+- ✅ Crear nueva persona
+- ✅ Editar persona existente
+- ✅ Eliminar persona
+- ✅ Validaciones de formularios
+
+## 🏗️ Estructura del Proyecto
+
+```
+personasDVP/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── auth/
+│   │   │   │   ├── login/           # Componente de login
+│   │   │   │   └── register/        # Componente de registro
+│   │   │   ├── home/                # Página de inicio
+│   │   │   ├── footer/              # Footer con firma
+│   │   │   └── personas/
+│   │   │       ├── persona-list/    # Lista de personas
+│   │   │       └── persona-form/    # Formulario crear/editar
+│   │   ├── services/
+│   │   │   ├── auth.service.ts      # Servicio de autenticación
+│   │   │   └── persona.service.ts   # Servicio de personas
+│   │   ├── models/
+│   │   │   ├── user.model.ts        # Interfaces de usuario
+│   │   │   └── persona.model.ts     # Interfaces de persona
+│   │   ├── app.routes.ts            # Configuración de rutas
+│   │   └── app.config.ts            # Configuración global
+│   ├── environments/
+│   │   └── environment.ts           # Variables de entorno
+│   └── styles.css                   # Estilos globales
+└── angular.json
+```
+
+## 🔌 API Backend
+
+Se conecta al backend desplegado en Render:
+- **URL:** `https://backenddvp.onrender.com/api`
+- **Endpoints:**
+  - `POST /auth/login` - Iniciar sesión
+  - `POST /auth/register` - Registrar usuario
+  - `GET /personas` - Listar personas
+  - `GET /personas/:id` - Obtener persona
+  - `POST /personas` - Crear persona
+  - `PUT /personas/:id` - Actualizar persona
+  - `DELETE /personas/:id` - Eliminar persona
+
+## 🛠️ Instalación
+
+### Prerrequisitos
+- Node.js 18+
+- npm o yarn
+- Angular CLI 20
+
+### Pasos
+
+1. **Clonar el repositorio**
+```bash
+git clone <url-repositorio>
+cd personasDVP
+```
+
+2. **Instalar dependencias**
+```bash
+npm install
+```
+
+3. **Configurar variables de entorno**
+Editar `src/environments/environment.ts`:
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'https://backenddvp.onrender.com/api'
+};
+```
+
+4. **Ejecutar en desarrollo**
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La aplicación estará disponible en `http://localhost:4200`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 📦 Build para Producción
 
 ```bash
-ng generate component component-name
+ng build --configuration production
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Los archivos compilados estarán en `dist/personas-dvp/`
 
+## 🌐 Despliegue
+
+### Vercel (Recomendado)
+
+1. **Instalar Vercel CLI**
 ```bash
-ng generate --help
+npm install -g vercel
 ```
 
-## Building
-
-To build the project run:
-
+2. **Desplegar**
 ```bash
-ng build
+vercel --prod
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+### Configuración de Vercel
+Crear archivo `vercel.json`:
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
 ```
 
-## Running end-to-end tests
+## 🎯 Rutas de la Aplicación
 
-For end-to-end (e2e) testing, run:
+- `/` - Página de inicio
+- `/login` - Iniciar sesión
+- `/register` - Registrarse
+- `/personas` - Lista de personas (requiere autenticación)
+- `/personas/new` - Crear persona
+- `/personas/edit/:id` - Editar persona
 
-```bash
-ng e2e
+## 🔐 Autenticación
+
+El sistema usa localStorage para mantener la sesión:
+```typescript
+// Al hacer login/register
+localStorage.setItem('currentUser', JSON.stringify(user));
+
+// Al hacer logout
+localStorage.removeItem('currentUser');
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🎨 Personalización del Tema
 
-## Additional Resources
+Los colores principales están definidos en los archivos CSS de cada componente:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```css
+/* Backgrounds */
+--bg-primary: #0f1419;
+--bg-secondary: #1a1b26;
+--bg-card: #24283b;
+
+/* Acentos */
+--accent-cyan: #7dcfff;
+--accent-purple: #bb9af7;
+--accent-blue: #7aa2f7;
+--accent-pink: #f7768e;
+
+/* Text */
+--text-primary: #c0caf5;
+--text-secondary: #9aa5ce;
+```
+
+## 🐛 Debug
+
+Para ver logs en consola del navegador (F12):
+- Errores de API
+- Estado de autenticación
+- Operaciones CRUD
+
+## 👤 Autor
+
+**RobARC**  
+Made with ❤️
+
+## 📄 Licencia
+
+Opensource.
