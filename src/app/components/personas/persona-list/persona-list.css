@@ -1,6 +1,8 @@
 .personas-container {
-  min-height: 100vh;
+  height: 100%;
   background-color: #0f1419;
+  padding-bottom: 8rem;
+  overflow-y: auto;
 }
 
 .header {
