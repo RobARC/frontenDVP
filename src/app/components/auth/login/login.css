@@ -2,10 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  min-height: 100%;
   background: linear-gradient(135deg, #0f1419 0%, #1a1b26 100%);
-  padding: 2rem 2rem 17rem 2rem;
-  overflow: hidden;
+  padding: 2rem;
 }
 
 .login-card {
